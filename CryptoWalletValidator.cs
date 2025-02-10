@@ -12,17 +12,17 @@ namespace CryptoWalletValidator
 
         public static string GuessAndValidateWalletType(string address)
         {
-            if (IsValidAddress(address, "^(1|3|bc1)[a-zA-HJ-NP-Z0-9]{25,39}$") && VerifyChecksum(address, Base58Decode, CalculateDoubleSHA256Checksum))
+            if (IsValidAddress(address, "(1|3|bc1)[a-zA-HJ-NP-Z0-9]{25,39}") && VerifyChecksum(address, Base58Decode, CalculateDoubleSHA256Checksum))
                 return "Bitcoin";
-            if (IsValidAddress(address, "^0x[a-fA-F0-9]{40}$") && VerifyEthereumChecksum(address))
+            if (IsValidAddress(address, "0x[a-fA-F0-9]{40}") && VerifyEthereumChecksum(address))
                 return "Ethereum";
-            if (IsValidAddress(address, "^r[a-zA-Z0-9]{24,34}$") && VerifyChecksum(address, Base58Decode, CalculateDoubleSHA256Checksum))
+            if (IsValidAddress(address, "r[a-zA-Z0-9]{24,34}") && VerifyChecksum(address, Base58Decode, CalculateDoubleSHA256Checksum))
                 return "Ripple";
-            if (IsValidAddress(address, "^[48][0-9AB][1-9A-HJ-NP-Za-km-z]{93}$") && VerifyChecksum(address, MoneroBase58Decode, CalculateKeccakChecksum))
+            if (IsValidAddress(address, "[48][0-9AB][1-9A-HJ-NP-Za-km-z]{93}") && VerifyChecksum(address, MoneroBase58Decode, CalculateKeccakChecksum))
                 return "Monero";
-            if (IsValidAddress(address, "^X[1-9A-HJ-NP-Za-km-z]{33}$") && VerifyChecksum(address, Base58Decode, CalculateDoubleSHA256Checksum))
+            if (IsValidAddress(address, "X[1-9A-HJ-NP-Za-km-z]{33}") && VerifyChecksum(address, Base58Decode, CalculateDoubleSHA256Checksum))
                 return "Dash";
-            if (IsValidAddress(address, "^t1[1-9A-HJ-NP-Za-km-z]{33}$") && VerifyChecksum(address, Base58Decode, CalculateDoubleSHA256Checksum))
+            if (IsValidAddress(address, "t1[1-9A-HJ-NP-Za-km-z]{33}") && VerifyChecksum(address, Base58Decode, CalculateDoubleSHA256Checksum))
                 return "ZCash";
 
             return "Unknown or Invalid Address";
